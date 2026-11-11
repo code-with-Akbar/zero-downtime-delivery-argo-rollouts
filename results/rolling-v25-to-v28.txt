@@ -1,0 +1,37 @@
+# Rolling update test: hello-devops-web v25 -> v28
+# Namespace: zero-downtime, Strategy: canary (maxSurge 1, maxUnavailable 0)
+
+## Rollout status (after update)
+Name:            hello-web
+Namespace:       zero-downtime
+Status:          [32m✔[0m Healthy
+Strategy:        Canary
+  Step:          
+  SetWeight:     100
+  ActualWeight:  100
+Images:          akbar2339124/hello-devops-web:28 ([32mstable[0m)
+Replicas:
+  Desired:       3
+  Current:       3
+  Updated:       3
+  Ready:         3
+  Available:     3
+
+NAME                                   KIND        STATUS        AGE    INFO
+⟳ hello-web                            Rollout     [32m✔[0m Healthy     26m    
+├──# revision:3                                                         
+│  └──⧉ [32mhello-web-7656cdcb6c[0m           ReplicaSet  [32m✔[0m Healthy     9m46s  [32mstable[0m
+│     ├──□ hello-web-7656cdcb6c-v6vpr  Pod         [32m✔[0m Running     9m46s  ready:1/1
+│     ├──□ hello-web-7656cdcb6c-tp2km  Pod         [32m✔[0m Running     9m39s  ready:1/1
+│     └──□ hello-web-7656cdcb6c-tdjtg  Pod         [32m✔[0m Running     9m36s  ready:1/1
+├──# revision:2                                                         
+│  └──⧉ hello-web-5858998f97           ReplicaSet  [0m•[0m ScaledDown  17m    
+└──# revision:1                                                         
+   └──⧉ hello-web-7d77855c79           ReplicaSet  [0m•[0m ScaledDown  26m    
+
+## Load generator summary
+Total FAIL lines: 0
+ok=3350 fail=0
+
+## Version served after update
+{"version":"v28"}
