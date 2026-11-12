@@ -1,0 +1,6 @@
+# Blue-green test: v28 active -> preview v25 -> promote -> undo (preview v28) -> abort
+Result:
+- Preview (v25) verified alongside active (v28) via separate Services
+- Promote switched active to v25
+- Undo created a new preview (v28); abort removed it
+- Active remained v25, no user-facing errors observed in the check
