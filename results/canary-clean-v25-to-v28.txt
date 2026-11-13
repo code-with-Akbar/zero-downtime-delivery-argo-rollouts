@@ -1,0 +1,16 @@
+# Clean canary test: hello-devops-web v25 (stable) -> v28 (canary)
+# Namespace: zero-downtime, Strategy: canary (33 -> pause 30s -> 66 -> pause 30s -> 100)
+# Load generator: busybox loop, GET /api/version every 0.2s, started 05:35:51Z
+
+Canary window (UTC):
+  06:20:11  RolloutUpdated (revision 7)
+  06:20:15  step 1/4 setWeight 33
+  06:20:45  step 2/4 pause 30s
+  06:20:48  step 3/4 setWeight 66
+  06:20:49  CanaryPauseStep
+  06:21:19  resumed
+  06:21:22  RolloutCompleted (all 4 steps)
+
+Result:
+  FAIL count during full loadgen run (incl. canary window): 0
+  Last ok count at 06:22:17: 4600
